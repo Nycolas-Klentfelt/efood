@@ -6,7 +6,7 @@ import Menu from './pages/Menu'
 const Rotas = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/perfil" element={<Menu />} />
+    <Route path="/perfil/:id" element={<Menu />} />
   </Routes>
 )
 

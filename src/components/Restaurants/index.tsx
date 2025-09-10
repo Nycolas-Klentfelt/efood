@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom'
 import imageEstrela from '../../assets/images/estrela.png'
 import * as S from './styles'
 
-export type Props = {
+type Props = {
   title: string
-  category?: string
+  category: string
   description: string
-  rating?: number
+  rating: number
   image: string
   isFeatured?: boolean
-  variant: string
+  id: number
 }
 
 const Restaurants = ({
@@ -19,33 +19,40 @@ const Restaurants = ({
   rating,
   image,
   isFeatured,
-  variant
-}: Props) => (
-  <S.BoxProduct variant={variant}>
-    <S.ImgProduct variant={variant}>
-      <img src={image} alt={title} />
-      <S.BoxTag>
-        {isFeatured && <S.Tag>Destaque da semana</S.Tag>}
-        {category && <S.Tag>{category}</S.Tag>}
-      </S.BoxTag>
-    </S.ImgProduct>
-    <S.Infos variant={variant}>
-      <S.BoxTitle>
-        <S.Title variant={variant}>{title}</S.Title>
-        {rating && (
+  id
+}: Props) => {
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 95) {
+      return descricao.slice(0, 246) + '...'
+    }
+
+    return descricao
+  }
+  return (
+    <S.BoxProduct>
+      <S.ImgProduct>
+        <img src={image} alt={title} />
+        <S.BoxTag>
+          {isFeatured && <S.Tag>Destaque da semana</S.Tag>}
+          {category && <S.Tag>{category}</S.Tag>}
+        </S.BoxTag>
+      </S.ImgProduct>
+      <S.Infos>
+        <S.BoxTitle>
+          <S.Title>{title}</S.Title>
           <S.Rating>
             {rating} <img src={imageEstrela} alt="avaliação" />
           </S.Rating>
-        )}
-      </S.BoxTitle>
-      <div>
-        <S.Description variant={variant}>{description}</S.Description>
-      </div>
-      <S.Button variant={variant} as={Link} to="/perfil">
-        {variant === 'produto' ? 'Adicionar ao carrinho' : 'Saiba mais'}
-      </S.Button>
-    </S.Infos>
-  </S.BoxProduct>
-)
+        </S.BoxTitle>
+        <div>
+          <S.Description>{getDescricao(description)}</S.Description>
+        </div>
+        <S.Button as={Link} to={`/perfil/${id}`}>
+          Saiba mais
+        </S.Button>
+      </S.Infos>
+    </S.BoxProduct>
+  )
+}
 
 export default Restaurants

@@ -2,19 +2,20 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 
 export const BoxProduct = styled.div`
-  width: 472px;
-  max-height: 398px;
+  width: 320px;
+  max-height: 338px;
 `
 
 export const ImgProduct = styled.div`
+  background-color: ${cores.salmao};
+  width: 320px;
   position: relative;
-  background-color: transparent;
-  width: 100%;
-  height: 217px;
+  height: 175px;
 
   img {
-    width: 100%;
-    max-height: 100%;
+    width: 304px;
+    height: 167px;
+    margin: 8px 8px 0 8px;
     object-fit: cover;
   }
 `
@@ -38,12 +39,11 @@ export const Tag = styled.div`
 export const Infos = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${cores.branco};
-  border: 1px solid ${cores.salmao};
-  color: ${cores.salmao};
+  background-color: ${cores.salmao};
+  color: ${cores.branco2};
   border-top: none;
   padding: 8px;
-  height: auto;
+  height: 163px;
 `
 
 export const BoxTitle = styled.div`
@@ -54,7 +54,7 @@ export const BoxTitle = styled.div`
 
 export const Title = styled.h2`
   display: flex;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 `
 
@@ -73,17 +73,18 @@ export const Rating = styled.span`
 export const Description = styled.p`
   font-size: 14px;
   line-height: 22px;
-  margin: 16px 0;
+  margin: 8px 0;
 `
 
 export const Button = styled.button`
-  width: 82px;
-  background-color: ${cores.salmao};
-  color: ${cores.branco};
+  width: 100%;
+  background-color: ${cores.branco2};
+  color: ${cores.salmao};
   text-align: center;
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
   border: none;
   padding: 4px 6px;
+  cursor: pointer;
 `

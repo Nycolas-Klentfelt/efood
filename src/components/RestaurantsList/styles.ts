@@ -1,12 +1,9 @@
 import styled from 'styled-components'
-import { variantProps } from '../Restaurants/styles'
 
-export const List = styled.ul<variantProps>`
+export const List = styled.ul`
   display: grid;
-  grid-template-columns: ${(props) =>
-    props.variant === 'produto' ? '1fr 1fr 1fr' : '1fr 1fr'};
-  column-gap: ${(props) => (props.variant === 'produto' ? '32px' : '80px')};
-  row-gap: ${(props) => (props.variant === 'produto' ? '32px' : '48px')};
-  margin: ${(props) =>
-    props.variant === 'produto' ? '56px 0 120px 0' : '80px 0 120px 0'};
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
+  row-gap: 48px;
+  margin: 80px 0 120px 0;
 `
