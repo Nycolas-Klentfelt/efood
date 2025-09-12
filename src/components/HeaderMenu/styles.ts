@@ -13,6 +13,7 @@ export const Container = styled.div`
 
   span {
     justify-self: end;
+    cursor: pointer;
   }
 `
 

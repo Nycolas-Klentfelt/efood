@@ -1,7 +1,9 @@
+import { useState } from 'react'
+
 import { List } from './styles'
+
 import Cardapio from '../Cardapio'
 import { MenuItem } from '../../pages/Home'
-import { useState } from 'react'
 import ModalProduct from '../ModalProduct'
 
 type Props = {
@@ -12,12 +14,12 @@ const CardapioList = ({ products }: Props) => {
   const [selectedProduct, setSelectedProduct] = useState<MenuItem | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleOpenModal = (product: MenuItem) => {
+  const openModal = (product: MenuItem) => {
     setSelectedProduct(product)
     setIsModalOpen(true)
   }
 
-  const handleCloseModal = () => {
+  const closeModal = () => {
     setIsModalOpen(false)
     setSelectedProduct(null)
   }
@@ -31,12 +33,12 @@ const CardapioList = ({ products }: Props) => {
             title={produtos.nome}
             description={produtos.descricao}
             image={produtos.foto}
-            onOpenModal={() => handleOpenModal(produtos)}
+            onOpenModal={() => openModal(produtos)}
           />
         ))}
 
         {isModalOpen && selectedProduct && (
-          <ModalProduct product={selectedProduct} onClose={handleCloseModal} />
+          <ModalProduct product={selectedProduct} onClose={closeModal} />
         )}
       </List>
     </div>

@@ -1,24 +1,34 @@
+import { useDispatch } from 'react-redux'
+
 import imgClose from '../../assets/images/close.png'
+
 import { Button } from '../Cardapio/styles'
 import { Modal, ModalAbout, ModalContent, CloseImg } from './styles'
 
+import { add, open } from '../../store/reducers/cart'
+import { MenuItem } from '../../pages/Home'
+
 type Props = {
-  product: {
-    nome: string
-    descricao: string
-    foto: string
-    preco: number
-  }
+  product: MenuItem
   onClose: () => void
 }
 
+export const formataPreco = (preco = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
 const ModalProduct = ({ product, onClose }: Props) => {
-  const formataPreco = (preco = 0) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(preco)
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(add({ ...product }))
+    dispatch(open())
+    onClose()
   }
+
   return (
     <Modal className="visivel">
       <ModalContent className="container">
@@ -26,7 +36,14 @@ const ModalProduct = ({ product, onClose }: Props) => {
         <ModalAbout>
           <h3>{product.nome}</h3>
           <p>{product.descricao}</p>
-          <Button>Adicionar ao carrinho - {formataPreco(product.preco)}</Button>
+          <Button
+            onClick={() => {
+              addToCart()
+              onClose()
+            }}
+          >
+            Adicionar ao carrinho - {formataPreco(product.preco)}
+          </Button>
         </ModalAbout>
         <CloseImg onClick={onClose}>
           <img src={imgClose} alt="Fechar modal" />
