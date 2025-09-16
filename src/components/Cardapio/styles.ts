@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
 
+type ButtonGroupProps = {
+  marginTop?: string
+}
+
 export const BoxProduct = styled.div`
   width: 320px;
   max-height: 338px;
@@ -76,7 +80,7 @@ export const Description = styled.p`
   margin: 8px 0;
 `
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonGroupProps>`
   width: 100%;
   background-color: ${cores.branco2};
   color: ${cores.salmao};
@@ -87,4 +91,5 @@ export const Button = styled.button`
   border: none;
   padding: 4px 6px;
   cursor: pointer;
+  margin-top: ${(props) => props.marginTop || ''};
 `
